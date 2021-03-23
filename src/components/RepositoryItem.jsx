@@ -1,23 +1,44 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, Image} from 'react-native';
+import RepositoryTexts from "./RepositoryTexts.jsx";
+import RepositoryStats from "./RepositoryStats.jsx";
+
 const styles = StyleSheet.create({
+    flexRow: {
+        display: 'flex',
+        flexDirection: 'row',
+
+    },
     container: {
         textAlign: 'left',
         fontSize: 16,
         margin: 20,
     },
+    avatar: {
+        width: 60,
+        height: 60,
+
+    },
+
 });
 
-const RepositoryItem=({item})=>{
+const RepositoryItem = ({item}) => {
     return <View style={styles.container}>
-        <Text>Full name: {item.fullName}</Text>
-        <Text>Description: {item.description}</Text>
-        <Text>Language: {item.language}</Text>
-        <Text>Stars: {item.stargazersCount}</Text>
-        <Text>Forks: {item.forksCount}</Text>
-        <Text>Reviews: {item.reviewCount}</Text>
-        <Text>Rating: {item.ratingAverage}</Text>
-    </View>
+        <View style={styles.flexRow}>
+            <Image
+                style={styles.avatar}
+                source={{
+                    uri: item.ownerAvatarUrl,
+                }}
+            />
+            <RepositoryTexts
+                item={item}
+            />
+        </View>
+        <RepositoryStats item={item}/>
+
+
+    </View>;
 }
 
 export default RepositoryItem;
