@@ -1,15 +1,15 @@
 import React from 'react';
-import {Text, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
-    paragraph: {
-        textAlign: 'center',
+    container: {
+        textAlign: 'left',
         fontSize: 16,
         margin: 20,
     },
 });
 
 const RepositoryItem=({item})=>{
-    return <Text style={styles.paragraph}>
+    return <View style={styles.container}>
         <Text>Full name: {item.fullName}</Text>
         <Text>Description: {item.description}</Text>
         <Text>Language: {item.language}</Text>
@@ -17,7 +17,7 @@ const RepositoryItem=({item})=>{
         <Text>Forks: {item.forksCount}</Text>
         <Text>Reviews: {item.reviewCount}</Text>
         <Text>Rating: {item.ratingAverage}</Text>
-    </Text>
+    </View>
 }
 
 export default RepositoryItem;

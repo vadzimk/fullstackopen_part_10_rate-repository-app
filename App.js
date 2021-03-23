@@ -1,7 +1,9 @@
 import {StatusBar} from 'expo-status-bar';
 import React from 'react';
+import {Provider as PaperProvider} from 'react-native-paper';
 import {StyleSheet, Text, View, Pressable, Alert} from 'react-native';
 import Main from './src/components/Main.jsx';
+
 
 
 const HelloWorld = props => {
@@ -11,7 +13,7 @@ const HelloWorld = props => {
 const PressableText = props => {
     return <Pressable onPress={() => Alert.alert('You pressed the text')}>
         <Text> you can press me</Text>
-    </Pressable>
+    </Pressable>;
 }
 
 export default function App() {
@@ -19,10 +21,13 @@ export default function App() {
     console.log("test logggggg");
 
     return (
-        <View style={styles.container}>
-            <Main/>
-            <StatusBar style="auto"/>
-        </View>
+        <PaperProvider>
+            <View style={styles.container}>
+                <Main/>
+                <StatusBar style="auto"/>
+            </View>
+        </PaperProvider>
+
     );
 }
 
