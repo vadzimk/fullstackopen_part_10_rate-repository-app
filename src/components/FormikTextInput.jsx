@@ -5,12 +5,14 @@ import {useField} from 'formik';
 
 import TextInput from "./TextInput.jsx";
 import Text from './Text.jsx';
-
+import theme from '../theme.js';
 
 const styles = StyleSheet.create({
     errorText: {
         marginTop: 5,
+        color: theme.colors.error,
     },
+
 
 
 });
@@ -20,8 +22,6 @@ const FormikTextInput = ({name, ...props}) => {
     const showError = meta.touched && meta.error;
 
 
-
-
     return (
         <>
             <TextInput
@@ -29,7 +29,9 @@ const FormikTextInput = ({name, ...props}) => {
                 onBlur={() => helpers.setTouched(true)}
                 value={field.value}
                 error={showError}
+
                 {...props}
+
 
             />
             {

@@ -5,6 +5,8 @@ import {Formik} from "formik";
 import FormikTextInput from "./FormikTextInput.jsx";
 import theme from "../theme.js";
 
+import * as yup from 'yup';
+
 const styles = StyleSheet.create({
     container: {
         padding: 30,
@@ -20,6 +22,9 @@ const styles = StyleSheet.create({
     },
     separator: {
         marginTop: 8,
+    },
+    errorField: {
+        borderColor: theme.colors.error,
     }
 
 });
@@ -33,13 +38,18 @@ const SignIn = () => {
         password: ''
     };
 
-    const validate = values => {
-        const errors = {};
-        if (!values.username) errors.username = 'Required';
-        if (!values.password) errors.password = 'Required';
+    // const validate = values => {
+    //     const errors = {};
+    //     if (!values.username) errors.username = 'Required';
+    //     if (!values.password) errors.password = 'Required';
+    //
+    //     return errors;
+    // };
 
-        return errors;
-    };
+    const validationSchema= yup.object().shape({
+       username: yup.string().required('username is required'),
+       password: yup.string().required('password is required'),
+    });
 
     const onSubmit = (values) => {
         console.log("values", values);
@@ -51,20 +61,20 @@ const SignIn = () => {
             <Formik
                 initialValues={initialValues}
                 onSubmit={onSubmit}
-                validate={validate}
+                validationSchema={validationSchema}
             >
-                {({handleSubmit}) => (
+                {({handleSubmit, errors}) => (
                     <View>
                         <FormikTextInput
                             name="username"
                             placeholder="Username"
-                            style={styles.input}
+                            style={errors.username ? [styles.input, styles.errorField] : styles.input}
                             autoCompleteType="username"
                         />
                         <FormikTextInput
                             name="password"
                             placeholder="Password"
-                            style={styles.input}
+                            style={errors.password ? [styles.input, styles.errorField] : styles.input}
                             secureTextEntry={true}
                             autoCompleteType="password"
                             autoCorrect={false}
