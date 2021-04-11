@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import RepositoryList from "./RepositoryList.jsx";
 import Text from './Text.jsx';
 import AppBar from "./AppBar.jsx";
@@ -16,6 +16,10 @@ const styles = StyleSheet.create({
         flexShrink: 1,
         alignSelf: 'stretch'
     },
+    header: {
+        textAlign: 'center',
+        fontFamily: theme.fonts.main
+    }
 });
 
 
@@ -26,7 +30,7 @@ const Main = () => {
             <Text
                 fontWeight={'bold'}
                 fontSize={'subheading'}
-                style={{textAlign: 'center'}}>
+                style={styles.header}>
                 Rate Repository Application
             </Text>
             <Switch>
