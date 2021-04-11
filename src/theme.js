@@ -6,6 +6,7 @@ const theme = {
         textPrimary: '#24292e',
         textSecondary: '#586069',
         primary: '#0366d6',
+        mainBackground: '#ADD'
 
     },
     fontSizes: {
@@ -19,7 +20,7 @@ const theme = {
         normal: '400',
         bold: '700',
     }
-}
+};
 
 
 export default theme;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet, Image} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
 import RepositoryTexts from "./RepositoryTexts.jsx";
 import RepositoryStats from "./RepositoryStats.jsx";
 
@@ -10,9 +10,9 @@ const styles = StyleSheet.create({
 
     },
     container: {
-        textAlign: 'left',
+        // textAlign: 'left',
         fontSize: 16,
-        margin: 20,
+        padding: 10,
     },
     avatar: {
         width: 60,
@@ -39,6 +39,6 @@ const RepositoryItem = ({item}) => {
 
 
     </View>;
-}
+};
 
 export default RepositoryItem;

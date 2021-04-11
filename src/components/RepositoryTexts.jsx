@@ -1,5 +1,5 @@
 import React from "react";
-import {View, StyleSheet} from 'react-native'
+import {View, StyleSheet} from 'react-native';
 
 import Text from './Text.jsx';
 import theme from "../theme.js";
@@ -8,30 +8,26 @@ const styles = StyleSheet.create({
     languageStyle: {
         backgroundColor: theme.colors.primary,
         borderRadius: 4,
-        color: '#FFF',
+        color: '#FFF'
     },
     container: {
-        marginLeft: 20,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        flexShrink: 1,
+        marginLeft: 10,
+        paddingRight: 10,
+        flexDirection: 'column',
+        alignItems: 'flex-start'
 
-
-    },
-    flexItem: {
-        margin: 1,
 
     }
 });
 
-const RepositoryTexts=({item})=>{
-    return(
+const RepositoryTexts = ({item}) => {
+    return (
         <View style={styles.container}>
-            <Text fontWeight="bold" style={styles.flexItem}>{item.fullName}</Text>
-            <Text style={styles.flexItem}>{item.description}</Text>
-            <Text style={[styles.languageStyle, styles.flexItem]}>{item.language}</Text>
+            <Text fontWeight="bold">{item.fullName}</Text>
+            <Text>{item.description}</Text>
+            <Text style={[styles.languageStyle]}>{item.language}</Text>
         </View>
-    )
-}
+    );
+};
 
 export default RepositoryTexts;

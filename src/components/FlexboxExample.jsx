@@ -30,7 +30,7 @@ const FlexboxExample=()=>{
                 </Text>
             </View>
         </View>
-    )
-}
+    );
+};
 
 export default FlexboxExample;

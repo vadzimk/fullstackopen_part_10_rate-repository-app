@@ -1,8 +1,9 @@
 import React from 'react';
-import {View, StyleSheet, Alert} from "react-native";
+import {View, StyleSheet} from "react-native";
 import Constants from 'expo-constants';
-import {Appbar} from 'react-native-paper';
+import {Appbar, Button} from 'react-native-paper';
 import theme from '../theme.js';
+import {Link} from 'react-router-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -10,19 +11,28 @@ const styles = StyleSheet.create({
     },
     bar: {
         backgroundColor: theme.colors.textPrimary,
-    }
+    },
+
 });
 
 const AppBar = () => {
+
+
     return <View style={styles.container}>
         <Appbar style={styles.bar}>
-            <Appbar.Action
-
-                icon="source-repository-multiple" onPress={() => Alert.alert("Pressed repos")}
-            />
+            <Link
+                to="/signin"
+            >
+                <Button icon="login" color="#FFF"/>
+            </Link>
+            <Link
+                to="/"
+            >
+                <Button icon="source-repository-multiple" color="#FFF"/>
+            </Link>
         </Appbar>
     </View>;
-}
+};
 
 
 export default AppBar;

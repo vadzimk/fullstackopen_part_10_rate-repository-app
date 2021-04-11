@@ -57,8 +57,8 @@ const repositories = [
 ];
 
 const ItemSeparator = () => {
-    return <View style={styles.separator}/>
-}
+    return <View style={styles.separator}/>;
+};
 
 const RepositoryList = () => {
     return (
@@ -72,7 +72,7 @@ const RepositoryList = () => {
                 />
             )}
         />
-    )
-}
+    );
+};
 
 export default RepositoryList;

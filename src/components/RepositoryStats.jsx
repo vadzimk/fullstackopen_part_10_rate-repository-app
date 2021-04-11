@@ -20,11 +20,11 @@ const Stat = ({value, name}) => {
         <Text fontWeight="bold" style={styles.textItem}>{value}</Text>
         <Text style={styles.textItem}>{name}</Text>
     </View>);
-}
+};
 
 const makeString = (num) => {
     return num >= 1000 ? (num / 1000).toFixed(1).concat('k') : num.toString();
-}
+};
 
 const RepositoryStats = ({item}) => {
     return (
@@ -46,7 +46,7 @@ const RepositoryStats = ({item}) => {
                 name="Rating"
             />
         </View>
-    )
-}
+    );
+};
 
 export default RepositoryStats;
