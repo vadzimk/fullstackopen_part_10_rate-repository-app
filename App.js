@@ -6,25 +6,22 @@ import Main from './src/components/Main.jsx';
 import {NativeRouter} from "react-router-native";
 
 
-// const HelloWorld = props => {
-//     return <Text>Hello vadiz</Text>
-// }
-//
-// const PressableText = props => {
-//     return <Pressable onPress={() => Alert.alert('You pressed the text')}>
-//         <Text> you can press me</Text>
-//     </Pressable>;
-// }
+import {ApolloProvider} from "@apollo/client";
+import createApolloClient from "./src/utils/aplloClient.js";
+
+
+const apolloClient = createApolloClient();
 
 export default function App() {
 
-    // console.log("test logggggg");
 
     return (
         <PaperProvider>
             <View style={styles.container}>
                 <NativeRouter>
-                    <Main/>
+                    <ApolloProvider client={apolloClient}>
+                        <Main/>
+                    </ApolloProvider>
                 </NativeRouter>
                 <StatusBar style="auto"/>
             </View>
