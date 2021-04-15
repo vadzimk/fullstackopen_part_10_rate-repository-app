@@ -36,7 +36,7 @@ const Separator = ({...props}) => <View {...props}/>;
 
 const SignIn = () => {
 
-    const [signIn, data] = useSignIn();
+    const signIn = useSignIn();
     const history = useHistory();
 
     const initialValues = {
@@ -64,7 +64,7 @@ const SignIn = () => {
         try{
             await signIn({username, password});
             history.push('/');  // redirect
-            console.log(data);
+
         } catch (e) {
             console.log(e);
         }

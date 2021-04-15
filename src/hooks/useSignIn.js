@@ -4,7 +4,7 @@ import useAuthStorage from "./useAuthStorage.js";
 import {useApolloClient} from '@apollo/client';
 
 const useSignIn = () => {
-    const [sendCredentials, {data}] = useMutation(AUTHORIZE);
+    const [mutate] = useMutation(AUTHORIZE);
     const authStorage = useAuthStorage();  // custom hook
     const apolloClient = useApolloClient();
 
@@ -12,15 +12,15 @@ const useSignIn = () => {
 
         const credentials = {username, password};
 
-        await sendCredentials({variables: {credentials}});
-
-        if (data && data.authorize){
-            await authStorage.setAccessToken(data.authorize.accessToken);
+        const res = await mutate({variables: {credentials}});
+        console.log("usesignin_res", res)
+        if (res.data && res.data.authorize){
+            await authStorage.setAccessToken(res.data.authorize.accessToken);
             await apolloClient.resetStore();
         }
     };
 
-    return [signIn, data];
+    return signIn;
 };
 
 export default useSignIn;

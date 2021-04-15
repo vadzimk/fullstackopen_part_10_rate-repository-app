@@ -85,3 +85,13 @@ export const AUTHORIZE = gql`
         }
     }
 `;
+
+
+export const GET_AUTHORIZATION = gql`
+    query {
+        authorizedUser {
+            id
+            username
+        }
+    }
+`;
