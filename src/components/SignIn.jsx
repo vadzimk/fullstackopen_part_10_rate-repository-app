@@ -7,6 +7,8 @@ import theme from "../theme.js";
 
 import * as yup from 'yup';
 import useSignIn from "../hooks/useSignIn.js";
+import {useHistory} from 'react-router-native';
+
 
 const styles = StyleSheet.create({
     container: {
@@ -35,6 +37,7 @@ const Separator = ({...props}) => <View {...props}/>;
 const SignIn = () => {
 
     const [signIn, data] = useSignIn();
+    const history = useHistory();
 
     const initialValues = {
         username: '',
@@ -60,6 +63,7 @@ const SignIn = () => {
 
         try{
             await signIn({username, password});
+            history.push('/');  // redirect
             console.log(data);
         } catch (e) {
             console.log(e);
