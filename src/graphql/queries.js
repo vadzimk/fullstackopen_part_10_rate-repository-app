@@ -73,3 +73,15 @@ export const GET_REPOSITORIES = gql`
     }
 `;
 
+
+export const AUTHORIZE = gql`
+    mutation auth($credentials: AuthorizeInput!){
+        authorize(credentials: $credentials) {
+            accessToken
+            user{
+                id
+                username
+            }
+        }
+    }
+`;
