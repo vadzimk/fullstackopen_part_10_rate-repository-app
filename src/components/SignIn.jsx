@@ -34,33 +34,62 @@ const styles = StyleSheet.create({
 
 const Separator = ({...props}) => <View {...props}/>;
 
-const SignIn = () => {
+const initialValues = {
+    username: '',
+    password: ''
+};
 
+const validationSchema = yup.object().shape({
+    username: yup.string().required('username is required'),
+    password: yup.string().required('password is required'),
+});
+
+
+export const SignInContainer=({onSubmit})=>{
+    return(
+        <Formik
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validationSchema={validationSchema}
+        >
+            {({handleSubmit, errors}) => (
+                <View>
+                    <FormikTextInput
+                        name="username"
+                        placeholder="Username"
+                        style={errors.username ? [styles.input, styles.errorField] : styles.input}
+                        autoCompleteType="username"
+                        testID='username'
+                    />
+                    <FormikTextInput
+                        name="password"
+                        placeholder="Password"
+                        style={errors.password ? [styles.input, styles.errorField] : styles.input}
+                        secureTextEntry={true}
+                        autoCompleteType="password"
+                        autoCorrect={false}
+                        testID='password'
+                    />
+                    <Separator style={styles.separator}/>
+                    <Button
+                        title="Sign in"
+                        type="submit"
+                        onPress={handleSubmit}
+                        testID='submitbutton'
+                    />
+                </View>
+            )}
+        </Formik>
+    );
+};
+
+
+const SignIn = () => {
     const signIn = useSignIn();
     const history = useHistory();
 
-    const initialValues = {
-        username: '',
-        password: ''
-    };
-
-    // const validate = values => {
-    //     const errors = {};
-    //     if (!values.username) errors.username = 'Required';
-    //     if (!values.password) errors.password = 'Required';
-    //
-    //     return errors;
-    // };
-
-    const validationSchema = yup.object().shape({
-        username: yup.string().required('username is required'),
-        password: yup.string().required('password is required'),
-    });
-
     const onSubmit = async (values) => {
-
         const {username, password} = values;
-
         try{
             await signIn({username, password});
             history.push('/');  // redirect
@@ -68,42 +97,11 @@ const SignIn = () => {
         } catch (e) {
             console.log(e);
         }
-
     };
-
 
     return (
         <View style={styles.container}>
-            <Formik
-                initialValues={initialValues}
-                onSubmit={onSubmit}
-                validationSchema={validationSchema}
-            >
-                {({handleSubmit, errors}) => (
-                    <View>
-                        <FormikTextInput
-                            name="username"
-                            placeholder="Username"
-                            style={errors.username ? [styles.input, styles.errorField] : styles.input}
-                            autoCompleteType="username"
-                        />
-                        <FormikTextInput
-                            name="password"
-                            placeholder="Password"
-                            style={errors.password ? [styles.input, styles.errorField] : styles.input}
-                            secureTextEntry={true}
-                            autoCompleteType="password"
-                            autoCorrect={false}
-                        />
-                        <Separator style={styles.separator}/>
-                        <Button
-                            title="Sign in"
-                            type="submit"
-                            onPress={handleSubmit}
-                        />
-                    </View>
-                )}
-            </Formik>
+            <SignInContainer onSubmit={onSubmit}/>
         </View>
 
     );
