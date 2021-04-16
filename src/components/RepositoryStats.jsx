@@ -16,9 +16,9 @@ const styles = StyleSheet.create({
 });
 
 const Stat = ({value, name}) => {
-    return (<View>
-        <Text fontWeight="bold" style={styles.textItem}>{value}</Text>
-        <Text style={styles.textItem}>{name}</Text>
+    return (<View testID="statview">
+        <Text fontWeight="bold" style={styles.textItem} testID="statvalue">{value}</Text>
+        <Text style={styles.textItem} testID="statname">{name}</Text>
     </View>);
 };
 
@@ -32,18 +32,22 @@ const RepositoryStats = ({item}) => {
             <Stat
                 value={makeString(item.stargazersCount)}
                 name="Stars"
+
             />
             <Stat
                 value={makeString(item.forksCount)}
                 name="Forks"
+
             />
             <Stat
                 value={makeString(item.reviewCount)}
                 name="Reviews"
+
             />
             <Stat
                 value={makeString(item.ratingAverage)}
                 name="Rating"
+
             />
         </View>
     );
