@@ -95,3 +95,13 @@ export const GET_AUTHORIZATION = gql`
         }
     }
 `;
+
+export const GET_SINGLE_REPO = gql`
+    query single_repo($id: ID!){
+        repository(id: $id) {
+            id
+            fullName
+            url
+        }
+    }
+`;
