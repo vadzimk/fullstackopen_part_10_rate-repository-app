@@ -12,11 +12,10 @@ const styles = StyleSheet.create({
     },
     container: {
         marginLeft: 10,
-        paddingRight: 10,
+        // paddingRight: 10,
         flexDirection: 'column',
-        alignItems: 'flex-start'
-
-
+        alignItems: 'flex-start',
+        flexShrink: 1
     }
 });
 

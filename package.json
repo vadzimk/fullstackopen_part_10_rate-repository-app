@@ -24,6 +24,7 @@
   "dependencies": {
     "@apollo/client": "^3.3.14",
     "@react-native-async-storage/async-storage": "^1.15.2",
+    "date-fns": "^2.21.1",
     "dotenv": "^8.2.0",
     "expo": "~40.0.0",
     "expo-constants": "^10.0.1",

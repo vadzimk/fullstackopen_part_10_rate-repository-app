@@ -1,20 +1,15 @@
 import React from 'react';
 
 import RepositoryItem from "./RepositoryItem.jsx";
-import {FlatList, StyleSheet, View, Pressable} from "react-native";
+import {FlatList, StyleSheet, Pressable} from "react-native";
 import {useHistory} from 'react-router-native';
-
+import ItemSeparator from "./ItemSeparator.jsx";
 const styles = StyleSheet.create({
     separator: {
         height: 5,
     },
 
 });
-
-
-const ItemSeparator = () => {
-    return <View style={styles.separator}/>;
-};
 
 
 const RepositoryListContainer = ({repositories}) => {
@@ -30,7 +25,7 @@ const RepositoryListContainer = ({repositories}) => {
     return (
         <FlatList
             data={repositoryNodes}
-            ItemSeparatorComponent={ItemSeparator}
+            ItemSeparatorComponent={()=><ItemSeparator style={styles.separator}/>}
             renderItem={({item, index, separators}) => (
                 <Pressable onPress={()=>selectRepo(item.id)}>
                     <RepositoryItem
