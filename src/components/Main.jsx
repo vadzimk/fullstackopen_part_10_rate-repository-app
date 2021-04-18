@@ -9,6 +9,7 @@ import {Route, Switch, Redirect} from 'react-router-native';
 import theme from '../theme';
 import SignIn from "./SignIn.jsx";
 import SingleRepositoryView from "./SingleRepositoryView.jsx";
+import ReviewForm from "./ReviewForm.jsx";
 
 const styles = StyleSheet.create({
     container: {
@@ -47,6 +48,9 @@ const Main = () => {
                 </Route>
                 <Route path="/repo/:id">
                     <SingleRepositoryView/>
+                </Route>
+                <Route path="/review-form">
+                    <ReviewForm/>
                 </Route>
                 <Redirect to={"/"}/>
             </Switch>

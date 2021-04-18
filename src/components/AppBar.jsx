@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, ScrollView} from "react-native";
+import {View, StyleSheet, ScrollView, Text} from "react-native";
 import Constants from 'expo-constants';
 import {Button} from 'react-native-paper';
 import theme from '../theme.js';
@@ -7,7 +7,7 @@ import {Link} from 'react-router-native';
 import {GET_AUTHORIZATION} from "../graphql/queries.js";
 import {useApolloClient, useQuery} from "@apollo/client";
 import useAuthStorage from "../hooks/useAuthStorage.js";
-import { useHistory } from 'react-router-native';
+import {useHistory} from 'react-router-native';
 
 
 const styles = StyleSheet.create({
@@ -32,7 +32,7 @@ const AppBar = () => {
 
     const user = data ? data.authorizedUser : undefined;
 
-    const handleLogout = async()=>{
+    const handleLogout = async () => {
         await authStorage.removeAccessToken();
         await apolloClient.resetStore();
         history.push('/signin');
@@ -57,6 +57,12 @@ const AppBar = () => {
                 >
                     <Button icon="source-repository-multiple" color="#FFF"/>
                 </Link>
+                {
+                    user
+                    && <Link to="/review-form" style={{justifyContent: 'center'}}>
+                        <Text style={{color: "#FFF"}}>Review</Text>
+                    </Link>
+                }
 
             </ScrollView>
         </View>

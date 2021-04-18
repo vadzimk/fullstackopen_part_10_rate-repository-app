@@ -128,3 +128,39 @@ export const GET_REVIEWS = gql`
         }
     }
 `;
+
+export const CREATE_REVIEW = gql`
+    mutation createReview( $review: CreateReviewInput ){
+        createReview (review: $review){
+            id
+            user{
+                id
+                username
+            }
+            repository{
+                id
+                fullName
+                reviews {
+                    edges {
+                        node {
+                            id
+                            text
+                            rating
+                            createdAt
+                            user {
+                                id
+                                username
+                            }
+                        }
+                    }
+                }
+            }
+            userId
+            repositoryId
+            rating
+            createdAt
+            text
+        }
+    }
+
+`;
