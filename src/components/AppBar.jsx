@@ -45,11 +45,18 @@ const AppBar = () => {
                 {
                     user
                         ? <Button onPress={handleLogout} icon="logout" color="#F00"/>
-                        : <Link
-                            to="/signin"
-                        >
-                            <Button icon="login" color="#0F0"/>
-                        </Link>
+                        : <>
+                            <Link
+                                to="/signin"
+                            >
+                                <Button icon="login" color="#0F0"/>
+                            </Link>
+                            <Link
+                                to="/signup"
+                            >
+                                <Button icon="account-plus-outline" color="#0F0"/>
+                            </Link>
+                        </>
                 }
 
                 <Link

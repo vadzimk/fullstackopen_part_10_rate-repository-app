@@ -10,6 +10,7 @@ import theme from '../theme';
 import SignIn from "./SignIn.jsx";
 import SingleRepositoryView from "./SingleRepositoryView.jsx";
 import ReviewForm from "./ReviewForm.jsx";
+import SignUp from "./Signup.jsx";
 
 const styles = StyleSheet.create({
     container: {
@@ -45,6 +46,9 @@ const Main = () => {
                 </Route>
                 <Route path={"/signin"}>
                     <SignIn/>
+                </Route>
+                <Route path={"/signup"}>
+                    <SignUp/>
                 </Route>
                 <Route path="/repo/:id">
                     <SingleRepositoryView/>
