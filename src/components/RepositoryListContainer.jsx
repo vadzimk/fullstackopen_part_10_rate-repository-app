@@ -1,9 +1,11 @@
 import React from 'react';
 
 import RepositoryItem from "./RepositoryItem.jsx";
-import {FlatList, StyleSheet, Pressable} from "react-native";
+import {FlatList, StyleSheet, Pressable, Text} from "react-native";
 import {useHistory} from 'react-router-native';
 import ItemSeparator from "./ItemSeparator.jsx";
+import RepositoryListHeader from "./RepositoryListHeader.jsx";
+
 const styles = StyleSheet.create({
     separator: {
         height: 5,
@@ -12,12 +14,12 @@ const styles = StyleSheet.create({
 });
 
 
-const RepositoryListContainer = ({repositories}) => {
+const RepositoryListContainer = ({repositories,...rest }) => {
 
     const repositoryNodes = repositories ? repositories.edges.map(edge => edge.node) : [];
     const history = useHistory();
 
-    const selectRepo = (id)=>{
+    const selectRepo = (id) => {
         history.push(`/repo/${id}`);
     };
 
@@ -25,9 +27,11 @@ const RepositoryListContainer = ({repositories}) => {
     return (
         <FlatList
             data={repositoryNodes}
-            ItemSeparatorComponent={()=><ItemSeparator style={styles.separator}/>}
+            ItemSeparatorComponent={() => <ItemSeparator style={styles.separator}/>}
+            ListHeaderComponent={<RepositoryListHeader {...rest}/>}
+            stickyHeaderIndices={[0]}
             renderItem={({item, index, separators}) => (
-                <Pressable onPress={()=>selectRepo(item.id)}>
+                <Pressable onPress={() => selectRepo(item.id)}>
                     <RepositoryItem
                         item={item}
                         key={item.id}

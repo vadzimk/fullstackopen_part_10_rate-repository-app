@@ -50,8 +50,8 @@ import {gql} from '@apollo/client';
 
 
 export const GET_REPOSITORIES = gql`
-    query getAllRepositories{
-        repositories {
+    query getAllRepositories($orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirection){
+        repositories(orderBy: $orderBy, orderDirection: $orderDirection ) {
             edges{
                 cursor
                 node{
