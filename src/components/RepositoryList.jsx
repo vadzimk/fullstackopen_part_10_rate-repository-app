@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import useRepositories from "../hooks/useRepositories.js";
 import RepositoryListContainer from "./RepositoryListContainer.jsx";
+import {useDebounce} from "use-debounce";
 
 const orderByOptions = [
     {
@@ -34,10 +35,16 @@ const variablesOrderBy = {
 
 const RepositoryList = () => {
     const [orderByValue, setOrderBy] = useState('latest');
-    const {repositories} = useRepositories(variablesOrderBy[orderByValue]); // custom hook
+    const [searchKey, setSearchQuery] = useState('');
+    const [searchKeyword] = useDebounce(searchKey, 500);
+    const {repositories} = useRepositories({...variablesOrderBy[orderByValue], searchKeyword}); // custom hook
 
     const orderByChange = (newOrder) => {
         setOrderBy(newOrder);
+    };
+
+    const searchKeyChange=(searchKey)=>{
+        setSearchQuery(searchKey);
     };
 
     return (
@@ -46,6 +53,8 @@ const RepositoryList = () => {
             orderByOptions={orderByOptions}
             repositories={repositories}
             orderByValue={orderByValue}
+            searchKeyChange={searchKeyChange}
+            searchKey={searchKey}
         />
     );
 };
