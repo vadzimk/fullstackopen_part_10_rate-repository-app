@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 });
 
 
-const RepositoryListContainer = ({repositories,...rest }) => {
+const RepositoryListContainer = ({repositories, onEndReach, ...rest }) => {
 
     const repositoryNodes = repositories ? repositories.edges.map(edge => edge.node) : [];
     const history = useHistory();
@@ -24,12 +24,16 @@ const RepositoryListContainer = ({repositories,...rest }) => {
     };
 
 
+
+
     return (
         <FlatList
             data={repositoryNodes}
             ItemSeparatorComponent={() => <ItemSeparator style={styles.separator}/>}
             ListHeaderComponent={<RepositoryListHeader {...rest}/>}
             stickyHeaderIndices={[0]}
+            onEndReached={onEndReach}
+            onEndReachedThreshold={0.5} // how far from the end to trigger onEndReached, number in units of visible length of the list
             renderItem={({item, index, separators}) => (
                 <Pressable onPress={() => selectRepo(item.id)}>
                     <RepositoryItem

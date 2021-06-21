@@ -37,7 +37,7 @@ const RepositoryList = () => {
     const [orderByValue, setOrderBy] = useState('latest');
     const [searchKey, setSearchQuery] = useState('');
     const [searchKeyword] = useDebounce(searchKey, 500);
-    const {repositories} = useRepositories({...variablesOrderBy[orderByValue], searchKeyword}); // custom hook
+    const {repositories, fetchMore} = useRepositories({...variablesOrderBy[orderByValue], searchKeyword, first: 8}); // custom hook
 
     const orderByChange = (newOrder) => {
         setOrderBy(newOrder);
@@ -46,7 +46,10 @@ const RepositoryList = () => {
     const searchKeyChange=(searchKey)=>{
         setSearchQuery(searchKey);
     };
+    const onEndReach=()=>{
 
+        fetchMore();
+    };
     return (
         <RepositoryListContainer
             orderByChange={orderByChange}
@@ -55,6 +58,7 @@ const RepositoryList = () => {
             orderByValue={orderByValue}
             searchKeyChange={searchKeyChange}
             searchKey={searchKey}
+            onEndReach={onEndReach}
         />
     );
 };
