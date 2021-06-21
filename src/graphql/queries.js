@@ -113,11 +113,16 @@ export const GET_SINGLE_REPO = gql`
 `;
 
 export const GET_REVIEWS = gql`
-    query reviews($id: ID!){
+    query reviews($id: ID!, $first: Int, $after: String){
         repository(id: $id) {
             id
             fullName
-            reviews {
+            reviews (first: $first, after: $after) {
+                pageInfo{
+                    hasNextPage
+                    startCursor
+                    endCursor
+                }
                 edges {
                     node {
                         id

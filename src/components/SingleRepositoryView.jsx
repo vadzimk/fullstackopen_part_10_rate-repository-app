@@ -114,7 +114,7 @@ const ReviewItem = ({item}) => {
 
 const SingleRepositoryView = () => {
     const {id} = useParams();
-    const reviews = useReviews(id);
+    const {data:reviews, fetchMore} = useReviews({id, first: 2});
     const repo = useSingleRepo(id);
     if (!reviews) {
         return <Text>Loading...</Text>;
@@ -129,6 +129,8 @@ const SingleRepositoryView = () => {
             keyExtractor={({node}) => node.id}
             ListHeaderComponent={() => <RepositoryInfo repo={repo}/>}
             ItemSeparatorComponent={() => <ItemSeparator style={styles.separator}/>}
+            onEndReached={fetchMore}
+            onEndReachedThreshold={0.5}
         />
     );
 };
