@@ -80,7 +80,7 @@ export const GET_REPOSITORIES = gql`
 `;
 
 
-export const AUTHORIZE = gql`
+export const AUTHORIZE_USER = gql`
     mutation auth($credentials: AuthorizeInput!){
         authorize(credentials: $credentials) {
             accessToken
@@ -93,11 +93,32 @@ export const AUTHORIZE = gql`
 `;
 
 
-export const GET_AUTHORIZATION = gql`
-    query {
+export const GET_AUTHORIZED_USER = gql`
+    query getAuthorizedUser($includeReviews: Boolean=false){
         authorizedUser {
             id
             username
+            reviews @include(if: $includeReviews){
+                pageInfo{
+                    hasNextPage
+                    startCursor
+                    endCursor
+                }
+                edges{
+                    cursor
+                    node{
+                        id                       
+                        repository{
+                            id
+                            fullName
+                        }
+                
+                        rating
+                        createdAt
+                        text
+                    }
+                }
+            }
         }
     }
 `;

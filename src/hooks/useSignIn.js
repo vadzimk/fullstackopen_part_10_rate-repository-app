@@ -1,10 +1,10 @@
 import {useMutation} from "@apollo/client";
-import {AUTHORIZE} from "../graphql/queries.js";
+import {AUTHORIZE_USER} from "../graphql/queries.js";
 import useAuthStorage from "./useAuthStorage.js";
 import {useApolloClient} from '@apollo/client';
 
 const useSignIn = () => {
-    const [mutate] = useMutation(AUTHORIZE);
+    const [mutate] = useMutation(AUTHORIZE_USER);
     const authStorage = useAuthStorage();  // custom hook
     const apolloClient = useApolloClient();
 

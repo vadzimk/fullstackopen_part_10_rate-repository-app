@@ -4,7 +4,7 @@ import Constants from 'expo-constants';
 import {Button} from 'react-native-paper';
 import theme from '../theme.js';
 import {Link} from 'react-router-native';
-import {GET_AUTHORIZATION} from "../graphql/queries.js";
+import {GET_AUTHORIZED_USER} from "../graphql/queries.js";
 import {useApolloClient, useQuery} from "@apollo/client";
 import useAuthStorage from "../hooks/useAuthStorage.js";
 import {useHistory} from 'react-router-native';
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 
 const AppBar = () => {
 
-    const {data} = useQuery(GET_AUTHORIZATION);
+    const {data} = useQuery(GET_AUTHORIZED_USER);
     const authStorage = useAuthStorage();
     const apolloClient = useApolloClient();
     const history = useHistory();
@@ -41,10 +41,10 @@ const AppBar = () => {
     return <View style={styles.container}>
         <View style={styles.bar}>
             <ScrollView horizontal>
-
                 {
                     user
-                        ? <Button onPress={handleLogout} icon="logout" color="#F00"/>
+                        ?
+                        <Button onPress={handleLogout} icon="logout" color="#F00"/>
                         : <>
                             <Link
                                 to="/signin"
@@ -66,9 +66,14 @@ const AppBar = () => {
                 </Link>
                 {
                     user
-                    && <Link to="/review-form" style={{justifyContent: 'center'}}>
-                        <Text style={{color: "#FFF"}}>Review</Text>
-                    </Link>
+                    && <>
+                        <Link to="/review-form" style={{justifyContent: 'center'}}>
+                            <Text style={{color: "#FFF"}}>Review</Text>
+                        </Link>
+                        <Link to="/my_reviews" style={{justifyContent: 'center', marginLeft: 25}}>
+                            <Text style={{color: "#FFF"}}>My reviews</Text>
+                        </Link>
+                    </>
                 }
 
             </ScrollView>

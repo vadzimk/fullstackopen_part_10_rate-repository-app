@@ -11,6 +11,7 @@ import SignIn from "./SignIn.jsx";
 import SingleRepositoryView from "./SingleRepositoryView.jsx";
 import ReviewForm from "./ReviewForm.jsx";
 import SignUp from "./Signup.jsx";
+import MyReviews from "./MyReviews.jsx";
 
 const styles = StyleSheet.create({
     container: {
@@ -52,6 +53,9 @@ const Main = () => {
                 </Route>
                 <Route path="/review-form">
                     <ReviewForm/>
+                </Route>
+                <Route path="/my_reviews">
+                    <MyReviews/>
                 </Route>
                 <Redirect to={"/"}/>
             </Switch>

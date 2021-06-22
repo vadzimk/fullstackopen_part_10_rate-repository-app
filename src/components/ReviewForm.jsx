@@ -53,7 +53,7 @@ const ReviewForm = () => {
         const review = {...values, rating: parseInt(values.rating)};
         const {data} = await createReview({variables: {review}});
         if(data && data.createReview){
-           console.log("reviewData", data);
+
             history.push(`/repo/${data.createReview.repositoryId}`);
         }
 

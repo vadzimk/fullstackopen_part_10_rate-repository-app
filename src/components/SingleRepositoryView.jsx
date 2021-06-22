@@ -10,7 +10,7 @@ import {FlatList} from "react-native";
 import useReviews from "../hooks/useReviews.js";
 import ItemSeparator from "./ItemSeparator.jsx";
 import Text from './Text.jsx';
-import {format} from 'date-fns';
+import ReviewItem from "./ReviewItem.jsx";
 
 const styles = StyleSheet.create({
     buttonContainer: {
@@ -78,38 +78,6 @@ const RepositoryInfo = ({repo}) => {
 };
 
 
-const ReviewItem = ({item}) => {
-    const review = item.node;
-
-    return (
-        <View style={styles.reviewItemContainer}>
-            <View style={styles.ratingColumnStyle}>
-                <View style={styles.circle}>
-                    <Text
-                        fontWeight="bold"
-                        fontSize="subheading"
-                        style={styles.ratingValueStyle
-                        }>
-                        {review.rating}
-                    </Text>
-                </View>
-
-            </View>
-            <View style={styles.textColumnStyle}>
-                <View>
-                    <Text fontWeight="bold">{review.user.username}</Text>
-                </View>
-                <View>
-                    <Text color="textSecondary" fontWeight="bold">{format(new Date(review.createdAt), 'yyyy-mm-dd')}</Text>
-                </View>
-                <View style={styles.ratingTextStyle}>
-                    <Text>{review.text}</Text>
-                </View>
-            </View>
-
-        </View>
-    );
-};
 
 
 const SingleRepositoryView = () => {
@@ -120,12 +88,12 @@ const SingleRepositoryView = () => {
         return <Text>Loading...</Text>;
     }
 
-    console.log('reveiws', reviews);
+
 
     return (
         <FlatList
             data={reviews}
-            renderItem={({item}) => <ReviewItem item={item}/>}
+            renderItem={({item}) => <ReviewItem review={item.node} title={item.node.user.username}/>}
             keyExtractor={({node}) => node.id}
             ListHeaderComponent={() => <RepositoryInfo repo={repo}/>}
             ItemSeparatorComponent={() => <ItemSeparator style={styles.separator}/>}
