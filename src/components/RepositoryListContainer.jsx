@@ -5,6 +5,7 @@ import {FlatList, StyleSheet, Pressable, Text} from "react-native";
 import {useHistory} from 'react-router-native';
 import ItemSeparator from "./ItemSeparator.jsx";
 import RepositoryListHeader from "./RepositoryListHeader.jsx";
+import useSelectRepo from "../hooks/useSelectRepo.js";
 
 const styles = StyleSheet.create({
     separator: {
@@ -16,15 +17,9 @@ const styles = StyleSheet.create({
 
 const RepositoryListContainer = ({repositories, onEndReach, ...rest }) => {
 
+    const {selectRepo} = useSelectRepo();
+
     const repositoryNodes = repositories ? repositories.edges.map(edge => edge.node) : [];
-    const history = useHistory();
-
-    const selectRepo = (id) => {
-        history.push(`/repo/${id}`);
-    };
-
-
-
 
     return (
         <FlatList

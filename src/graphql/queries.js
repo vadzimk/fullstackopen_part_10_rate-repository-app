@@ -107,12 +107,12 @@ export const GET_AUTHORIZED_USER = gql`
                 edges{
                     cursor
                     node{
-                        id                       
+                        id
                         repository{
                             id
                             fullName
                         }
-                
+
                         rating
                         createdAt
                         text
@@ -203,5 +203,12 @@ export const CREATE_USER = gql`
             id
             username
         }
+    }
+`;
+
+
+export const DELETE_REVIEW = gql`
+    mutation deleteReview($id: ID!){
+        deleteReview(id: $id)
     }
 `;
